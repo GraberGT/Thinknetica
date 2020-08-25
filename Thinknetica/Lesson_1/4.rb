@@ -1,29 +1,24 @@
 # frozen_string_literal: true
 
-puts 'Input a'
-a = gets.chomp.to_f
-puts a
-
-puts 'Input b'
-b = gets.chomp.to_f
-puts b
-
-puts 'Input c'
-c = gets.chomp.to_f
-puts c
+puts 'Input a, b, c'
+a = gets.to_f
+b = gets.to_f
+c = gets.to_f
 
 d = b**2 - 4 * a * c
-puts d
 
-if d.negative?
-  puts 'not have root'
+d_sqrt = Math.sqrt(d)
 
-elsif d.zero?
-  x = -b / 2 * a
-  puts "1 root: x = #{x}"
+puts d.to_s
 
-elsif  x1 = (-b + Math.sqrt(d)) / 2 * a
-  x2 = (-b - Math.sqrt(d)) / 2 * a
-  puts "2 root : x1 = #{x1}, x2 = #{x2}"
-
+if d >= 0
+  x1 = (-b + d_sqrt) / (2 * a)
+  if d > 0
+    x2 = (-b - d_sqrt) / (2 * a)
+    puts "#{x1}, #{x2} - roots"
+  else
+    puts "#{x1} - root"
+  end
+else
+  puts 'Not have roots'
 end
