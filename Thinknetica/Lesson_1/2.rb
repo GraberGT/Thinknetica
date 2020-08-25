@@ -1,7 +1,9 @@
-puts "Enter radix"
+# frozen_string_literal: true
+
+puts 'Enter radix'
 a = gets.chomp.to_i
 
-puts "Enter height"
+puts 'Enter height'
 h = gets.chomp.to_i
 
 square = 0.5 * a * h

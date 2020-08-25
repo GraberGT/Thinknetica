@@ -1,10 +1,12 @@
-puts "First side"
+# frozen_string_literal: true
+
+puts 'First side'
 a = gets.chomp.to_i
 
-puts "Second side"
+puts 'Second side'
 b = gets.chomp.to_i
 
-puts "Third side"
+puts 'Third side'
 c = gets.chomp.to_i
 
 array = [a, b, c]
@@ -13,7 +15,7 @@ k1 = array[0]
 k2 = array[1]
 sum = k1 + k2
 
-right = hyp **2 == k1 **2 + k2 **2
+right = hyp**2 == k1**2 + k2**2
 
 if right
   puts 'This triangle is right angled'

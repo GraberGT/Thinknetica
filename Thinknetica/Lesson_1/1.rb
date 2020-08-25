@@ -1,13 +1,15 @@
-puts "Enter your name"
+# frozen_string_literal: true
+
+puts 'Enter your name'
 name = gets.chomp
 
-puts "Enter your heigth"
+puts 'Enter your heigth'
 h = gets.chomp.to_i
 
 ideal = (h - 110) * 1.15
 
 if ideal < 0
   puts "#{name}, Your weight is optimal"
-else 
+else
   puts "#{name}, Your's ideal weight #{ideal}"
 end

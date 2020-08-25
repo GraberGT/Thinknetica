@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 puts 'Input a'
 a = gets.chomp.to_f
 puts a
