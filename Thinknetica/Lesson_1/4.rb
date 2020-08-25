@@ -7,11 +7,10 @@ c = gets.to_f
 
 d = b**2 - 4 * a * c
 
-d_sqrt = Math.sqrt(d)
-
 puts d.to_s
 
 if d >= 0
+  d_sqrt = Math.sqrt(d)
   x1 = (-b + d_sqrt) / (2 * a)
   if d > 0
     x2 = (-b - d_sqrt) / (2 * a)
