@@ -15,16 +15,15 @@ puts c
 d = b**2 - 4 * a * c
 puts d
 
-if d < 0
-  puts 'koren net'
+if d.negative?
+  puts 'not have root'
 
-elsif d == 0
+elsif d.zero?
   x = -b / 2 * a
-  puts "1 koren: x = #{x}"
+  puts "1 root: x = #{x}"
 
-else
-  x1 = (-b + Math.sqrt(d)) / 2 * a
+elsif  x1 = (-b + Math.sqrt(d)) / 2 * a
   x2 = (-b - Math.sqrt(d)) / 2 * a
-  puts "2 koren : x1 = #{x1}, x2 = #{x2}"
+  puts "2 root : x1 = #{x1}, x2 = #{x2}"
 
 end

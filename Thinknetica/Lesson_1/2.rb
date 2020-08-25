@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 puts 'Enter radix'
-a = gets.chomp.to_i
+a = gets.chomp
 
 puts 'Enter height'
-h = gets.chomp.to_i
+h = gets.chomp
 
 square = 0.5 * a * h
 
