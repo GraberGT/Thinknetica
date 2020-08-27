@@ -7,7 +7,7 @@ result = {}
 
 alphabet.each.with_index(1) do |letter, index|
   if vowels.include? letter
-    result[alphabet.index(letter)] = letter
+    result[letter] = index
   end
 end
 
