@@ -20,7 +20,7 @@ loop do
   break if input == 0
 end
 
-check.each { |product, hash| sum += hash['price'] * hash['quantity'] }
+check.each { |product, price| sum += price['price'] * price['quantity'] }
 
 puts check
 puts sum.to_s
