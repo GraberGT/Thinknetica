@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 puts 'Day'
 day = gets.chomp.to_i
 

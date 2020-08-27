@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 check = {}
 sum = 0
 loop do
@@ -16,12 +18,11 @@ loop do
   puts 'Write your choice: '
   input = gets.chomp.to_f
 
-  check[product] = { 'price': price, 'quantity': quantity }
+  check[product] = { 'price' => price, 'quantity' => quantity }
   break if input == 0
 end
 
-check.each { |product, price| sum += price['price'] * price['quantity'] }
+check.each { |_product, price| sum += price['price'] * price['quantity'] }
 
 puts check
-puts sum.to_s
-
+puts sum.to_f
