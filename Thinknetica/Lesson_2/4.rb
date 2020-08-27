@@ -1,11 +1,18 @@
 # frozen_string_literal: true
 
-arr = ['a'..'z']
+alphabet = ('a'..'z').each.to_a
+vowels = %w[a e i o u y]
 
-hash = %w[a e i o u y].to_a
+result = {}
 
-arr.each.with_index(1) do |key, value|
-  hash[key] = value if hash.include? key
+alphabet.each.with_index(1) do |letter, index|
+  if vowels.include? letter
+    result[alphabet.index(letter)] = letter
+  end
 end
 
-puts hash
+puts result
+
+
+
+
