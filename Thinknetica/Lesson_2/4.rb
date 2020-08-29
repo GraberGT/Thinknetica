@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 alphabet = ('a'..'z').each.to_a
+
 vowels = %w[a e i o u y]
 
 result = {}
