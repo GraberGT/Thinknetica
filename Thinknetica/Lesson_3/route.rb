@@ -1,5 +1,6 @@
+# frozen_string_literal: true
+
 class Route
-  
   attr_reader :stations
 
   def initialize(first_st, last_st)
@@ -9,18 +10,18 @@ class Route
   end
 
   def add_station(station)
-    return "Error" if station == @station.first || @station.last
+    return 'Error' if station == @station.first || @station.last
+
     @stations.insert(-2, station)
   end
 
-  def delete_station(station)    
+  def delete_station(station)
     return 'Error' if station == @station.first || @station.last
+
     @stations.delete(station)
   end
 
   def show_route
     @stations
   end
-
 end
-

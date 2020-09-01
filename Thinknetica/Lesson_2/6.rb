@@ -22,7 +22,7 @@ loop do
   break if input == 0
 end
 
-check.each { |product, price| sum += price['price'] * price['quantity'] }
+check.each { |_product, price| sum += price['price'] * price['quantity'] }
 
 puts check
 puts sum.to_f

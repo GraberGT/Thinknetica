@@ -1,7 +1,8 @@
-class Train
+# frozen_string_literal: true
 
-attr_reader :number, :type, :amount_wagon
-attr_accessor :speed
+class Train
+  attr_reader :number, :type, :amount_wagon
+  attr_accessor :speed
 
   def initialize(number, type, amount_wagon)
     @number = number
@@ -19,7 +20,7 @@ attr_accessor :speed
   end
 
   def remove_wagon
-    @amount_wagon -=1 if @speed.zero? @amount_wagon != 1
+    @amount_wagon -= 1 if @speed.zero? @amount_wagon != 1
   end
 
   def stop
@@ -70,11 +71,3 @@ attr_accessor :speed
     station_index == 0
   end
 end
-
-
-
-
-
-
-
-
