@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Train
+  
   attr_reader :number, :type, :amount_wagon
   attr_accessor :speed
 
@@ -34,19 +35,11 @@ class Train
   end
 
   def move_station
-    unless last_st?
-      @station.send_train(self)
-      next_station.add_train(self)
-      @station = next_station
-    end
+    return if last_st?
   end
 
   def comeback_station
-    unless first_st?
-      @station.send_train(self)
-      prev_station.add_train(self)
-      @station = prev_station
-    end
+    return if first_st?
   end
 
   def next_station
@@ -70,4 +63,5 @@ class Train
   def first_st?
     station_index == 0
   end
+
 end
