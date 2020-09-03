@@ -1,67 +1,69 @@
 # frozen_string_literal: true
 
+require_relative 'route'
+
 class Train
-  
-  attr_reader :number, :type, :amount_wagon
-  attr_accessor :speed
+  attr_reader :number, :type
 
-  def initialize(number, type, amount_wagon)
+  @@trains = {}
+
+  def self.all
+    @@trains
+  end
+
+  def initialize(number)
     @number = number
-    @type = type
-    @amount_wagon = amount_wagon
-    @speed = 0
+    @quantity_wagon = []
+    @@trains[number] = self
   end
 
-  def move(speed)
-    @speed += speed
+  def self.find(number)
+    all[number]
   end
 
-  def add_wagon
-    @amount_wagon += 1 if @speed.zero?
-  end
-
-  def remove_wagon
-    @amount_wagon -= 1 if @speed.zero? @amount_wagon != 1
-  end
-
-  def stop
-    @speed = 0
-  end
-
-  def add_route(route)
+  def station_route(route)
     @route = route
-    @route.first_st.add_train(self)
-    @station = route.first_st
+    @current_station = @route.stations.first
+    @current_station.join_train(self)
   end
 
-  def move_station
-    return if last_st?
+  def add_wagon(wagon)
+    return 'Error' if wagon.type != @type
+
+    @amount_wagon << wagon
   end
 
-  def comeback_station
-    return if first_st?
-  end
+  attr_reader :current_station
 
   def next_station
-    @route.stations[station_index + 1] unless last_st?
+    @route.stations[current_station_index + 1]
   end
 
-  def prev_station
-    @route.stations[station_index - 1] unless first_st?
+  def previous_station
+    @route.stations[current_station_index - 1]
   end
 
-  private
+  def go_tonext_station
+    return if @current_station == @route.stations.last
 
-  def station_index
-    @route.stations.index(@station)
+    move(next_station)
   end
 
-  def last_st?
-    @station == @route.last_st
+  def go_toback_station
+    return if @current_station == @route.stations.first
+
+    move(previous_station)
   end
 
-  def first_st?
-    station_index == 0
+  def current_station_index
+    @route.stations.index(@current_station)
   end
 
+  def move(station)
+    return unless @current_station && @route
+
+    @current_station.send_train(self)
+    @current_station = station
+    @current_station.join_train(self)
+end
 end
