@@ -1,81 +1,67 @@
 # frozen_string_literal: true
 
 class Train
-  attr_reader :number, :type
-  attr_accessor :speed, :carriages
+  
+  attr_reader :number, :type, :amount_wagon
+  attr_accessor :speed
 
-  def initialize(number, type)
+  def initialize(number, type, amount_wagon)
     @number = number
     @type = type
+    @amount_wagon = amount_wagon
     @speed = 0
-    @carriages = []
   end
 
-  def gather_speed(new_speed)
-    @speed = new_speed
+  def move(speed)
+    @speed += speed
+  end
+
+  def add_wagon
+    @amount_wagon += 1 if @speed.zero?
+  end
+
+  def remove_wagon
+    @amount_wagon -= 1 if @speed.zero? @amount_wagon != 1
   end
 
   def stop
     @speed = 0
   end
 
-  def add_carriage(carriage)
-    @carriages << carriage if @speed.zero?
-  end
-
-  def remove_carriage
-    @carriages.pop if !@carriages.empty? && @speed.zero?
-  end
-
-  def count_carriages
-    @carriages.size
-  end
-
-  def take_route(route)
+  def add_route(route)
     @route = route
-    @at_station = 0
-    @route.stations.first.take_train(self)
+    @route.first_st.add_train(self)
+    @station = route.first_st
   end
 
-  def forward
-    return unless next_station
-
-    current_station.depart_train(self)
-    next_station.take_train(self)
-    @at_station += 1
+  def move_station
+    return if last_st?
   end
 
-  def backward
-    return unless previous_station
+  def comeback_station
+    return if first_st?
+  end
 
-    current_station.depart_train(self)
-    previous_station.take_train(self)
-    @at_station -= 1
+  def next_station
+    @route.stations[station_index + 1] unless last_st?
+  end
+
+  def prev_station
+    @route.stations[station_index - 1] unless first_st?
   end
 
   private
 
-  def show_route
-    [previous_station, current_station, next_station]
+  def station_index
+    @route.stations.index(@station)
   end
 
-  def last_station?
-    @route.stations.last == current_station
+  def last_st?
+    @station == @route.last_st
   end
 
-  def first_station?
-    @route.stations.first == current_station
+  def first_st?
+    station_index == 0
   end
 
-  def current_station
-    @route.stations[@at_station]
-  end
-
-  def previous_station
-    @route.stations[@at_station - 1] unless first_station?
-  end
-
-  def next_station
-    @route.stations[@at_station + 1] unless last_station?
-  end
 end

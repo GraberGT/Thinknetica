@@ -1,28 +1,27 @@
 # frozen_string_literal: true
 
 class Station
-  attr_reader :name, :trains
-  @@stations = []
+  attr_reader :name
+  attr_reader :trains
 
   def initialize(name)
     @name = name
     @trains = []
-    @@stations << self
   end
 
-  def take_train(train)
+  def add_train(train)
     @trains << train
   end
 
-  def trains_list(type)
-    @trains.select { |train| train if train.type == type }
+  def show_trains
+    @trains
   end
 
-  def depart_train(train)
+  def trains_type(type)
+    @trains.select { |train| train.type == type }
+  end
+
+  def send_train(train)
     @trains.delete(train)
-  end
-
-  def self.all
-    @@stations
   end
 end
