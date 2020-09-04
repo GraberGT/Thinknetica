@@ -6,6 +6,7 @@ require_relative 'passanger_train'
 require_relative 'cargo_train'
 require_relative 'passanger_wagon'
 require_relative 'cargo_wagon'
+require_relative 'train'
 
 class Main
   def initialize
@@ -32,6 +33,8 @@ class Main
     puts '5. Enter Cargo Wagon'
     puts '6. Enter Route'
     puts '7. List Stations'
+    puts '8. Unhook Wagon'
+    puts '9. Delete Station'
     puts '0. Exit'
     choise = gets.chomp.to_s
   end
@@ -52,6 +55,10 @@ class Main
       create_route
     when '7'
       stations
+    when '8'
+      delete_wagon
+    when '9'
+      delete_station
     end
   end
 
