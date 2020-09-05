@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
+require_relative 'wagon'
 
-class Passanger_wagon
-  attr_reader :pass_seats
-
-  def initialize(pass_seats)
-    @pass_seats = pass_seats
+class PassengerWagon < Wagon
+  attr_reader :type
+  def initialize(number)
+    super(number)
+    @type = "Passenger"
   end
 end

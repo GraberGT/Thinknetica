@@ -1,8 +1,11 @@
 # frozen_string_literal: true
-class Cargo_wagon
-  attr_reader :volume
+require_relative 'wagon'
 
-  def initialize(volume)
-    @volume = volume
+class CargoWagon < Wagon
+  attr_reader :type
+
+  def initialize(number)
+    super(number)
+    @type = "Cargo"
   end
 end

@@ -1,38 +1,31 @@
 # frozen_string_literal: true
 
-require_relative 'route'
 
 class Train
-  attr_reader :number, :type
+  attr_reader :number, :type, :wagon
 
-  @@trains = {}
-
-  def self.all
-    @@trains
-  end
-
+  
   def initialize(number)
     @number = number
-    @quantity_wagon = []
-    @@trains[number] = self
-  end
-
-  def self.find(number)
-    all[number]
+    @wagons = []
   end
 
   def station_route(route)
     @route = route
     @current_station = @route.stations.first
-    @current_station.join_train(self)
+    @current_station.add_train(self)
   end
 
   def add_wagon(wagon)
     return 'Error' if wagon.type != @type
 
-    @amount_wagon << wagon
+    @wagons << wagon
   end
 
+  def delete_wagon(wagon)
+    @wagons.delete(wagon)
+  end
+  
   attr_reader :current_station
 
   def next_station
@@ -64,6 +57,6 @@ class Train
 
     @current_station.send_train(self)
     @current_station = station
-    @current_station.join_train(self)
+    @current_station.add_train(self)
 end
 end

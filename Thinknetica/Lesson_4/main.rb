@@ -7,11 +7,15 @@ require_relative 'cargo_train'
 require_relative 'passanger_wagon'
 require_relative 'cargo_wagon'
 require_relative 'train'
+require_relative 'wagon'
 
 class Main
+  
+  attr_reader :routes, :trains, :stations, :wagons
+  
   def initialize
     @stations = []
-    @route = []
+    @routes = []
     @trains = []
     @wagons = []
   end
@@ -26,15 +30,13 @@ class Main
   end
 
   def choise_interface
-    puts '1. Enter Station'
-    puts '2. Enter Passanger Train'
-    puts '3. Enter Cargo Train'
-    puts '4. Enter Passanger Wagon'
-    puts '5. Enter Cargo Wagon'
-    puts '6. Enter Route'
-    puts '7. List Stations'
-    puts '8. Unhook Wagon'
-    puts '9. Delete Station'
+    puts '1. Create station'
+    puts '2. Create train'
+    puts '3. Create wagon'
+    puts '4. Delete wagon'
+    puts '5. Create and manage route'
+    puts '6. Delete station'
+    puts '7  List station'
     puts '0. Exit'
     choise = gets.chomp.to_s
   end
@@ -44,24 +46,20 @@ class Main
     when '1'
       create_station
     when '2'
-      create_passanger_train
+      create_train
     when '3'
-      create_cargo_train
+      create_wagon
     when '4'
-      create_passanger_wagon
+      delete_wagon
     when '5'
-      create_cargo_wagon
+      create_and_manage_route
     when '6'
-      create_route
+      delete_station
     when '7'
       stations
-    when '8'
-      delete_wagon
-    when '9'
-      delete_station
     end
   end
-
+  
   def create_station
     p 'Enter Name Station'
     name = gets.chomp
@@ -69,43 +67,107 @@ class Main
     @stations << name
   end
 
+  def create_train
+    puts 'Enter 1 if passanger, enter 2 if cargo'
+    type = gets.to_i
+
+    puts 'Enter train number'
+    number = gets.to_i
+
+    if type == 1
+      train = PassengerTrain.new(number)
+    elsif type == 2
+      train = CargoTrain.new(number)
+    end
+    @trains.push(train)
+
+    if train
+      print type == 1 ? 'Passanger ' : 'Cargo '
+      puts "Train number #{number} created"
+    end
+  end
+
+  def create_and_manage_route
+    loop do
+      choise_2 = choise_interface_2
+      break if choise_2 == '0'
+
+      process_choise_2(choise_2)
+    end
+  end
+
+    def choise_interface_2
+      puts '1. Create route'
+      puts '2. Add station'
+      puts '3. Delete station'
+      puts '0. Exit'
+      choise_2 = gets.chomp.to_s
+    end
+
+    def process_choise_2(choise_2)
+      case choise_2
+      when '1'
+        create_route
+      when '2'
+        add_station
+      when '3'
+        delete_station
+      end
+    end
+
   def create_route
-    st1 = @stations[0]
-    st2 = @stations[-1]
-    rou = Route.new(st1, st2)
-    @route << rou
+    p "Enter first station"
+    first_st = gets.chomp.to_s
+    p "Enter current station station"
+    current_st = gets.chomp.to_s
+    p "Enter last station"
+    last_st = gets.chomp.to_s
+
+    route = Route.new(first_st, current_st, last_st)
+    @routes << route
+    p @routes
+  end
+
+  def add_station
+    puts "Enter name station"
+    station = gets.chomp.to_s
+    @stations.insert(-2, station)
+  end
+
+  def delete_station
+    puts "Enter name station"
+    station = gets.chomp.to_s
+    @stations.delete(station)
   end
 
   def stations
     p @stations
   end
 
-  def create_passanger_train
-    p 'Enter Passanger Train Number'
-    num = gets.chomp.to_s
-    tr = Passanger_train.new(num)
-    @trains << tr
-  end
+  def create_wagon
+    puts 'Enter 1 if passanger wagon, Enter 2 if cargo wagon'
+    input = gets.strip
 
-  def create_cargo_train
-    p 'Enter Cargo Train Number'
-    num = gets.chomp.to_s
-    tr = Cargo_train.new(num)
-    @trains << tr
-  end
+    puts 'Enter wagon number:'
+    wagon_number = gets.to_i
 
-  def create_passanger_wagon
-    p 'Enter Passanger Seats'
-    num = gets.chomp.to_s
-    wagon = Passanger_wagon.new(num)
-    @wagons << wagon
-  end
+    if input == '1'
+      wagon = PassengerWagon.new(wagon_number)
+      @wagons.push(wagon)
+    elsif input == '2'
+      wagon = CargoWagon.new(wagon_number)
+      @wagons.push(wagon)
+    end
 
-  def create_cargo_wagon
-    p 'Enter Cargo Volume'
-    num = gets.chomp.to_s
-    wagon = Cargo_wagon.new(num)
-    @wagons << wagon
+    if wagon
+      print input == '1' ? 'Passanger ' : 'Cargo '
+      puts "Wagon number #{wagon_number} created"
+    end
+  end
+  def delete_wagon
+    puts 'Enter number wagon'
+    wagon = gets.chomp
+    @wagons.delete(wagon)
   end
 end
 

@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require_relative 'passanger_train'
-require_relative 'cargo_train'
+
+
+
 
 class Station
-  attr_reader :name
-  attr_reader :trains
+  attr_reader :name, :trains
 
   def initialize(name)
     @name = name
@@ -18,7 +18,7 @@ class Station
     attr_reader :stations
   end
 
-  def join_train(train)
+  def add_train(train)
     @trains << train
   end
 
