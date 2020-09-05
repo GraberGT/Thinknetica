@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'train'
 
 class Passanger_train < Train
@@ -20,4 +22,3 @@ class Passanger_train < Train
     @wagons_amount.delete(wagon)
   end
 end
-

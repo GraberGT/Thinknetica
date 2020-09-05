@@ -1,5 +1,6 @@
+# frozen_string_literal: true
+
 class Train
-  
   attr_reader :number, :type, :amount_wagon
   attr_accessor :speed
 
@@ -61,5 +62,4 @@ class Train
   def first_st?
     station_index == 0
   end
-
 end

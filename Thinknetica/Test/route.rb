@@ -1,5 +1,6 @@
+# frozen_string_literal: true
+
 class Route
-  
   attr_reader :stations
 
   def initialize(first_st, last_st)
@@ -19,5 +20,4 @@ class Route
   def show_route
     @stations
   end
-
 end

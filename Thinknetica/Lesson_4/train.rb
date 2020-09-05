@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
-
 class Train
   attr_reader :number, :type, :wagon
 
-  
   def initialize(number)
     @number = number
     @wagons = []
@@ -25,7 +23,7 @@ class Train
   def delete_wagon(wagon)
     @wagons.delete(wagon)
   end
-  
+
   attr_reader :current_station
 
   def next_station

@@ -10,9 +10,8 @@ require_relative 'train'
 require_relative 'wagon'
 
 class Main
-  
   attr_reader :routes, :trains, :stations, :wagons
-  
+
   def initialize
     @stations = []
     @routes = []
@@ -59,7 +58,7 @@ class Main
       stations
     end
   end
-  
+
   def create_station
     p 'Enter Name Station'
     name = gets.chomp
@@ -96,31 +95,31 @@ class Main
     end
   end
 
-    def choise_interface_2
-      puts '1. Create route'
-      puts '2. Add station'
-      puts '3. Delete station'
-      puts '0. Exit'
-      choise_2 = gets.chomp.to_s
-    end
+  def choise_interface_2
+    puts '1. Create route'
+    puts '2. Add station'
+    puts '3. Delete station'
+    puts '0. Exit'
+    choise_2 = gets.chomp.to_s
+  end
 
-    def process_choise_2(choise_2)
-      case choise_2
-      when '1'
-        create_route
-      when '2'
-        add_station
-      when '3'
-        delete_station
-      end
+  def process_choise_2(choise_2)
+    case choise_2
+    when '1'
+      create_route
+    when '2'
+      add_station
+    when '3'
+      delete_station
     end
+  end
 
   def create_route
-    p "Enter first station"
+    p 'Enter first station'
     first_st = gets.chomp.to_s
-    p "Enter current station station"
+    p 'Enter current station station'
     current_st = gets.chomp.to_s
-    p "Enter last station"
+    p 'Enter last station'
     last_st = gets.chomp.to_s
 
     route = Route.new(first_st, current_st, last_st)
@@ -129,13 +128,13 @@ class Main
   end
 
   def add_station
-    puts "Enter name station"
+    puts 'Enter name station'
     station = gets.chomp.to_s
     @stations.insert(-2, station)
   end
 
   def delete_station
-    puts "Enter name station"
+    puts 'Enter name station'
     station = gets.chomp.to_s
     @stations.delete(station)
   end
@@ -164,6 +163,7 @@ class Main
       puts "Wagon number #{wagon_number} created"
     end
   end
+
   def delete_wagon
     puts 'Enter number wagon'
     wagon = gets.chomp
