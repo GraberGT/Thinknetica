@@ -10,7 +10,6 @@ require_relative 'train'
 require_relative 'wagon'
 
 class Main
-  attr_reader :routes, :trains, :stations, :wagons
 
   def initialize
     @stations = []
@@ -64,6 +63,8 @@ class Main
   end
 
 private
+
+attr_reader :routes, :trains, :stations, :wagons
 
   def create_station
     p 'Enter Name Station'

@@ -10,8 +10,8 @@ class Train
 
   def station_route(route)
     @route = route
-    @current_station = @route.stations.first
-    @current_station.add_train(self)
+    @current_st = @route.stations.first
+    @current_st.add_train(self)
   end
 
   def add_wagon(wagon)
@@ -27,34 +27,34 @@ class Train
   attr_reader :current_station
 
   def next_station
-    @route.stations[current_station_index + 1]
+    @route.stations[current_st_index + 1]
   end
 
   def previous_station
-    @route.stations[current_station_index - 1]
+    @route.stations[current_st_index - 1]
   end
 
   def go_tonext_station
-    return if @current_station == @route.stations.last
+    return if @current_st == @route.stations.last
 
-    move(next_station)
+    move(first_st)
   end
 
   def go_toback_station
-    return if @current_station == @route.stations.first
+    return if @current_st == @route.stations.first
 
-    move(previous_station)
+    move(last_st)
   end
 
   def current_station_index
-    @route.stations.index(@current_station)
+    @route.stations.index(@current_st)
   end
 
   def move(station)
-    return unless @current_station && @route
+    return unless @current_st && @route
 
-    @current_station.send_train(self)
-    @current_station = station
-    @current_station.add_train(self)
+    @current_st.send_train(self)
+    @current_st = station
+    @current_st.add_train(self)
 end
 end
