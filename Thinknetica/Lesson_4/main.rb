@@ -59,6 +59,10 @@ class Main
     end
   end
 
+  def stations
+    puts @stations 
+  end
+
 private
 
   def create_station
@@ -166,10 +170,7 @@ private
       wagon = gets.chomp
       @wagons.delete(wagon)
     end
-    
-    def stations
-      puts @stations
-    end
+  end
 end
 
 Main.new.start
