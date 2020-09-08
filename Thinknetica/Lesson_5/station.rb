@@ -1,20 +1,25 @@
 # frozen_string_literal: true
 
+require_relative 'instance_counter'
+
 class Station
-  attr_reader :name
-  attr_reader :trains
+  include InstanceCounter
+
+  attr_reader :name, :trains
 
   def initialize(name)
     @name = name
+    @stations = []
     @trains = []
+    @stations << self
+  end
+
+  class << self
+    attr_reader :stations
   end
 
   def add_train(train)
     @trains << train
-  end
-
-  def show_trains
-    @trains
   end
 
   def trains_type(type)
@@ -23,5 +28,9 @@ class Station
 
   def send_train(train)
     @trains.delete(train)
+  end
+
+  def all
+    @stations
   end
 end
