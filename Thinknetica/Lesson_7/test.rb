@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TestApp
   attr_reader :stations, :wagons, :trains, :routes
 
@@ -22,8 +24,8 @@ class TestApp
 
   def create_trains(num)
     num.times do |n|
-      trains << PassengerTrain.new("#{n}")
-      trains << CargoTrain.new("#{n}")
+      trains << PassengerTrain.new(n.to_s)
+      trains << CargoTrain.new(n.to_s)
     end
   end
 
@@ -35,8 +37,9 @@ class TestApp
 
   def list_trains
     if train.class == CargoTrain
-      puts "#{:number}, #{:type}, #{:volume}, #{:load_volume}"
+      puts 'number, type, volume, load_volume'
     else train.class == PassengerTrain
-      puts "#{:number}, #{:type}, #{:pass_seats}, #{:take_seats}"
+         puts 'number, type, pass_seats, take_seats'
+    end
   end
 end

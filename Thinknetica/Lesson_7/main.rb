@@ -164,12 +164,12 @@ class Main
       print input == '1' ? 'Passanger ' : 'Cargo '
       puts "Wagon number #{wagon_number} created"
     end
+  end
 
-    def delete_wagon
-      puts 'Enter number wagon'
-      wagon = gets.chomp
-      @wagons.delete(wagon)
-    end
+  def delete_wagon
+    puts 'Enter number wagon'
+    wagon = gets.chomp
+    @wagons.delete(wagon)
   end
 end
 

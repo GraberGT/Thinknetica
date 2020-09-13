@@ -85,7 +85,7 @@ class Train
     if number !~ NUMBER_FORMAT
       raise "Number must have 3 letters and/or numbers,
              hypen(optional) and 2 letters and/or numbers"
+      true
     end
-    true
   end
 end

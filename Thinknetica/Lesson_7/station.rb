@@ -34,11 +34,8 @@ class Station
   end
 
   def list_trains
-    return unless block_given?
-
-    trains.each do |train|
-      yield(train)
-    end
+    trains.each { |train| yield train } if block_given?
+  end
 
   def all
     @stations
