@@ -1,13 +1,16 @@
 # frozen_string_literal: true
 
 require_relative 'instance_counter'
-require_relative 'validate'
+require_relative 'validation'
 
 class Station
   include InstanceCounter
-  include Validate
+  include Validation
 
   attr_reader :name, :trains
+
+  validate :name, :presence
+  validate :name, :type, type: String
 
   def initialize(name)
     @name = name

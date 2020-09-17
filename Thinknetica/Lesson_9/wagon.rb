@@ -2,14 +2,15 @@
 
 require_relative 'manufacturer'
 require_relative 'instance_counter'
-require_relative 'validate'
+require_relative 'validation'
 
 class Wagon
   include Manufacturer
   include InstanceCounter
-  include Validate
+  include Validation
 
   attr_reader :number
+  validate :number, :presence
 
   def initialize(number)
     @number = number

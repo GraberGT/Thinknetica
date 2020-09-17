@@ -2,14 +2,18 @@
 
 require_relative 'manufacturer'
 require_relative 'instance_counter'
-require_relative 'validate'
+require_relative 'validation'
 
 class Train
   include InstanceCounter
   include Manufacturer
-  include Validate
+  include Validation
 
   attr_reader :number, :type, :wagon
+  strong_attr_acessor :number, String
+
+  validate :number, format: NUMBER_FORMAT
+  validate :number, :presence
 
   def initialize(number)
     @number = number
