@@ -1,3 +1,4 @@
+
 class Card
   LETTER_VALUES = { J: 10, Q: 10, K: 10, A: 11 }
   attr_reader :type, :value, :points

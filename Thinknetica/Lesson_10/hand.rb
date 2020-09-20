@@ -1,3 +1,4 @@
+
 class Hand
   def total_score(cards)
     total_score = 0

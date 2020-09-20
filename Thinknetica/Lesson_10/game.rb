@@ -1,3 +1,4 @@
+
 class Game
   
   DEFAULT_BET = 10

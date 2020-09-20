@@ -1,8 +1,7 @@
+
 require_relative 'player'
 
 class Printer 
-  
-  #this method will be moved to some other class
 
     
   def self.player_name
