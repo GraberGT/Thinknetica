@@ -102,3 +102,18 @@ POST создание ресурса
 PUT обновление ресурса
 
 DELETE удаление ресурса
+
+
+Заголовки 
+
+Accept Список допустимых форматов ресурса
+Accept: text/plain
+Connection Сведения о проведении соединения
+Connection: close
+Content-Type Формат и способ представления сущности
+Content-Type: text/html;charset=utf-8
+User-Agent Список названий и версий клиента и его компонентов с комментариями
+User-Agent: Mozilla/5.0 (X11; Linux i686; rv:2.0.1) Gecko/20100101 Firefox/4.0.1
+Content-Length Размер содержимого сущности в октетах (которые в русском языке обычно называют байтами)
+Content-Length: 1234
+Cache-Control Основные директивы для управления кэшированием 
