@@ -15,7 +15,6 @@ class Main
     @game = Game.new
     @turns = []
   end
-  # start Game
   
   def load_basic_menu
     Printer.game_greeting
