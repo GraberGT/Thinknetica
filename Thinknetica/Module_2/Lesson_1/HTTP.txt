@@ -60,38 +60,37 @@ Access-Control-Allow-Credentials: true
 
 
 
-grabergt:~/Thinknetica$ netcat httpbin.org 80 -C
-POST /anything?one=1 HTTP/1.1
+grabergt:~$ netcat httpbin.org 80 -C
+POST /anything HTTP/1.1
 Host: httpbin.org
-Content-Length: 5
-one
+Content-type: application/json
+
+
 HTTP/1.1 200 OK
-Date: Fri, 25 Sep 2020 04:44:19 GMT
+Date: Fri, 25 Sep 2020 17:55:36 GMT
 Content-Type: application/json
-Content-Length: 364
+Content-Length: 327
 Connection: keep-alive
 Server: gunicorn/19.9.0
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Credentials: true
 
 {
-  "args": {
-    "one": "1"
-  }, 
-  "data": "\r\n\r\n\r", 
+  "args": {}, 
+  "data": "", 
   "files": {}, 
   "form": {}, 
   "headers": {
-    "Content-Length": "5", 
+    "Content-Type": "application/json", 
     "Host": "httpbin.org", 
-    "One": "", 
-    "X-Amzn-Trace-Id": "Root=1-5f6d75a1-11f05a0c6fc39cfa4cd943c4"
+    "X-Amzn-Trace-Id": "Root=1-5f6e2f18-7ac912145519c36ad0f77382"
   }, 
   "json": null, 
   "method": "POST", 
   "origin": "95.56.70.107", 
-  "url": "http://httpbin.org/anything?one=1"
+  "url": "http://httpbin.org/anything"
 }
+
 
 
 
