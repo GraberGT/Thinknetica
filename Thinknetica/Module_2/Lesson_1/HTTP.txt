@@ -63,32 +63,26 @@ Access-Control-Allow-Credentials: true
 grabergt:~$ netcat httpbin.org 80 -C
 POST /anything?one=1 HTTP/1.1
 Host: httpbin.org
+Content-Length: 5
+one=1
 
-HTTP/1.1 200 OK
-Date: Thu, 24 Sep 2020 16:37:07 GMT
-Content-Type: application/json
-Content-Length: 310
+
+HTTP/1.1 400 Bad Request
+Date: Fri, 25 Sep 2020 04:39:38 GMT
+Content-Type: text/html
+Content-Length: 164
 Connection: keep-alive
-Server: gunicorn/19.9.0
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Credentials: true
 
-{
-  "args": {
-    "one": "1"
-  }, 
-  "data": "", 
-  "files": {}, 
-  "form": {}, 
-  "headers": {
-    "Host": "httpbin.org", 
-    "X-Amzn-Trace-Id": "Root=1-5f6ccb33-427229f6639af649bff0d24f"
-  }, 
-  "json": null, 
-  "method": "POST", 
-  "origin": "95.56.70.107", 
-  "url": "http://httpbin.org/anything?one=1"
-}
+<html>
+  <head>
+    <title>Bad Request</title>
+  </head>
+  <body>
+    <h1><p>Bad Request</p></h1>
+    Invalid HTTP header name: &#x27;ONE=1&#x27;
+  </body>
+</html>
+
 
 https://gist.github.com/GraberGT/ce30c2e6b06874b78bca8bfe7c338654
 
