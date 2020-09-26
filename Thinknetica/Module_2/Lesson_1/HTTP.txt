@@ -60,27 +60,39 @@ Access-Control-Allow-Credentials: true
 
 
 
-grabergt:~/Thinknetica$ netcat httpbin.org 443 -C
-POST / anything HTTP/1.1
+grabergt:~$ netcat httpbin.org 80 -C
+POST /anything?lang=ru HTTP/1.1
 Host: httpbin.org
-Content-Length:5
-one=1
+Content-Length: 4
 
+ruby
+HTTP/1.1 200 OK
+Date: Sat, 26 Sep 2020 17:10:10 GMT
+Content-Type: application/json
+Content-Length: 346
+Connection: keep-alive
+Server: gunicorn/19.9.0
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
 
-HTTP/1.1 400 Bad Request
-Server: awselb/2.0
-Date: Fri, 25 Sep 2020 18:51:14 GMT
-Content-Type: text/html
-Content-Length: 236
-Connection: close
+{
+  "args": {
+    "lang": "ru"
+  }, 
+  "data": "ruby", 
+  "files": {}, 
+  "form": {}, 
+  "headers": {
+    "Content-Length": "4", 
+    "Host": "httpbin.org", 
+    "X-Amzn-Trace-Id": "Root=1-5f6f75f1-6ad90f86942c643d16498bea"
+  }, 
+  "json": null, 
+  "method": "POST", 
+  "origin": "95.56.70.107", 
+  "url": "http://httpbin.org/anything?lang=ru"
+}
 
-<html>
-<head><title>400 The plain HTTP request was sent to HTTPS port</title></head>
-<body bgcolor="white">
-<center><h1>400 Bad Request</h1></center>
-<center>The plain HTTP request was sent to HTTPS port</center>
-</body>
-</html>
 
 
 
